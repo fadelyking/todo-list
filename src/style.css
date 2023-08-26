@@ -86,3 +86,7 @@ body {
 .main {
 	grid-column: 2/-1;
 }
+
+#hide {
+	display: none;
+}

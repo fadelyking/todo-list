@@ -1,14 +1,10 @@
 import "./style.css";
-import { addNewProject } from "./addproject";
+import { writeNewProjectName } from "./addproject";
+import { pushNewProjectToArray } from "./addproject";
+import { displayArrayContents } from "./addproject";
+import { deleteArrayContents } from "./addproject";
 
-const projectList = [];
 const tasksList = [];
-
-class Projects {
-	constructor(title) {
-		this.title = title;
-	}
-}
 
 class Tasks {
 	constructor(title, description, date, priority) {
@@ -23,5 +19,7 @@ class Tasks {
 	}
 }
 
-addNewProject();
-const running = new Tasks("Running", "Run 5KM");
+writeNewProjectName();
+pushNewProjectToArray();
+displayArrayContents();
+deleteArrayContents;
