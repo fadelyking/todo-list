@@ -35,8 +35,21 @@ export function pushNewProjectToArray() {
 		//Hide input field and button
 		newProjectInput.setAttribute("id", "hide");
 		addProjectBtn.setAttribute("id", "hide");
-		console.log(projects);
 	});
+}
+
+// Add a button to remove array items
+export function deleteArrayContents() {
+	const proj = document.querySelectorAll(".project");
+	const deleteBtn = document.createElement("button");
+	deleteBtn.classList.toggle("delete-btn");
+	deleteBtn.textContent = "Delete";
+	for (let pro of proj) {
+		pro.appendChild(deleteBtn);
+		deleteBtn.addEventListener("click", (e) => {
+			console.log(pro.textContent);
+		});
+	}
 }
 
 // Loop over array and display contents
@@ -45,10 +58,11 @@ export function displayArrayContents() {
 		const proj = document.createElement("li");
 		for (let i = 0; i < projects.length; i++) {
 			proj.classList.add("project");
+			addProjectBtn.textContent = "YOO";
 			const last = projects.slice(-1);
 			proj.textContent = last;
-			console.log(last);
 		}
 		projectsList.appendChild(proj);
+		deleteArrayContents();
 	});
 }

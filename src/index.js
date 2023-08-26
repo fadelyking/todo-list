@@ -22,4 +22,4 @@ class Tasks {
 writeNewProjectName();
 pushNewProjectToArray();
 displayArrayContents();
-deleteArrayContents;
+/* deleteArrayContents(); */
