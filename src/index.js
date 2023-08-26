@@ -1,3 +1,9 @@
+import "./style.css";
+import { addNewProject } from "./addproject";
+
+const projectList = [];
+const tasksList = [];
+
 class Projects {
 	constructor(title) {
 		this.title = title;
@@ -17,6 +23,5 @@ class Tasks {
 	}
 }
 
+addNewProject();
 const running = new Tasks("Running", "Run 5KM");
-
-console.log(running.task());
