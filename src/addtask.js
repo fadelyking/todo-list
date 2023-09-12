@@ -1,6 +1,8 @@
 import { Task } from ".";
+import { Project } from ".";
 
 const addTask = document.querySelector(".add-task");
+const taskListHeader = document.querySelector("h3");
 const taskList = document.querySelector(".task-list");
 const form = document.createElement("form");
 form.setAttribute("method", "post");
@@ -28,9 +30,9 @@ taskPriority.setAttribute("type", "range");
 taskPriority.setAttribute("name", "Priority");
 taskPriority.setAttribute("placeholder", "Task Priority");
 
-const s = document.createElement("input");
-s.setAttribute("type", "submit");
-s.setAttribute("value", "Submit");
+const submitBtn = document.createElement("input");
+submitBtn.setAttribute("type", "submit");
+submitBtn.setAttribute("value", "Submit");
 
 addTask.appendChild(form);
 form.appendChild(fieldset);
@@ -38,27 +40,28 @@ form.appendChild(taskTitle);
 form.appendChild(taskDescription);
 form.appendChild(taskDate);
 form.appendChild(taskPriority);
-form.appendChild(s);
+form.appendChild(submitBtn);
 
 export const tasks = [];
 
 export function taskMaker() {
 	function writeNewTaskName() {
-		addTask.addEventListener("click", (e) => {
+		taskListHeader.addEventListener("click", (e) => {
 			form.setAttribute("id", "unhide");
 		});
 
-		s.addEventListener("click", (e) => {
-			form.removeAttribute("id", "unhide");
+		submitBtn.addEventListener("click", (e) => {
+			e.preventDefault();
+			form.reset();
+			form.setAttribute("id", "hide");
 			const newTask = new Task(
 				`${taskTitle.value}`,
 				`${taskDescription.value}`,
 				`${taskDate.value}`,
 				`${taskPriority.value}`
 			);
+
 			tasks.push(newTask);
-			console.log(tasks);
-			e.preventDefault();
 		});
 	}
 

@@ -93,6 +93,10 @@ body {
 	display: none;
 }
 
+.hide {
+	display: none;
+}
+
 .add-task {
 	grid-column: 4/5;
 	font-family: "Roboto";
