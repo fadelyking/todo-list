@@ -1,5 +1,5 @@
 import "./style.css";
-import { projectMaker } from "./addproject";
+import { projectMaker, projects } from "./addproject";
 import { taskMaker, tasks } from "./addtask";
 
 export class Project {
@@ -25,10 +25,3 @@ export class Task {
 
 projectMaker();
 taskMaker();
-
-const sampleProj = new Project("project");
-const task = new Task("Golfing", "Play some Golf", "Sept", "Important");
-
-console.log(tasks);
-
-sampleProj.addTask(task);

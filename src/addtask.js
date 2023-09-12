@@ -52,16 +52,17 @@ export function taskMaker() {
 
 		submitBtn.addEventListener("click", (e) => {
 			e.preventDefault();
-			form.reset();
 			form.setAttribute("id", "hide");
+			console;
 			const newTask = new Task(
 				`${taskTitle.value}`,
 				`${taskDescription.value}`,
 				`${taskDate.value}`,
 				`${taskPriority.value}`
 			);
-
 			tasks.push(newTask);
+
+			form.reset();
 		});
 	}
 
