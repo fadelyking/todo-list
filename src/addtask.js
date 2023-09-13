@@ -1,5 +1,13 @@
-import { Task } from ".";
-import { Project } from ".";
+import { Project, projectMaker, projects } from "./addproject";
+
+export class Task {
+	constructor(title, description, date, priority) {
+		(this.title = title),
+			(this.description = description),
+			(this.date = date),
+			(this.priority = priority);
+	}
+}
 
 const addTask = document.querySelector(".add-task");
 const taskListHeader = document.querySelector("h3");
@@ -53,16 +61,50 @@ export function taskMaker() {
 		submitBtn.addEventListener("click", (e) => {
 			e.preventDefault();
 			form.setAttribute("id", "hide");
-			console;
 			const newTask = new Task(
 				`${taskTitle.value}`,
 				`${taskDescription.value}`,
 				`${taskDate.value}`,
 				`${taskPriority.value}`
 			);
+
+			const exampleTask1 = new Task(
+				"Work on security",
+				"Check for DDOS Attacks",
+				"23-9-2023",
+				"Important"
+			);
+			const exampleTask2 = new Task(
+				"Get some Wood",
+				"Wood in the Workshop",
+				"21-9-2023",
+				"Important"
+			);
+			const exampleTask3 = new Task(
+				"Check for Database Leaks",
+				"Go through the databases",
+				"12-9-2023",
+				"Not important"
+			);
+			const exampleTask4 = new Task("Go for a run", "Run 5KM", "25-9-2023", "Important");
+			const exampleTask5 = new Task(
+				"Get some Nails",
+				"They have to be rounded",
+				"12-3-2023",
+				"Kinda important"
+			);
+			tasks.push(exampleTask1);
+			tasks.push(exampleTask2);
+			tasks.push(exampleTask3);
+			tasks.push(exampleTask4);
+			tasks.push(exampleTask5);
 			tasks.push(newTask);
 
-			form.reset();
+			projects[0].addTask(exampleTask1);
+			projects[0].addTask(exampleTask2);
+			projects[0].addTask(exampleTask3);
+
+			console.log(projects);
 		});
 	}
 
