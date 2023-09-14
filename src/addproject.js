@@ -12,18 +12,6 @@ export class Project {
 	}
 }
 
-// Declaring Variables
-
-/* const projectExample1 = new Project("Cyber Security", 1);
-const projectExample2 = new Project("Sports", 2);
-const projectExample3 = new Project("Database", 3);
-const projectExample4 = new Project("Garden house", 4);
-
-projects.push(projectExample1);
-projects.push(projectExample2);
-projects.push(projectExample3);
-projects.push(projectExample4); */
-
 const projectsList = document.querySelector(".projects-list");
 const projectsListHeader = document.querySelector(".project-list-header");
 const newProjectInput = document.createElement("input");
@@ -63,30 +51,43 @@ export function projectMaker() {
 		});
 	}
 
-	// Add a button to remove array items
-	function deleteArrayContents() {
-		const proj = document.querySelectorAll(".project");
-		const deleteBtn = document.createElement("button");
-		deleteBtn.classList.toggle("delete-btn");
-		deleteBtn.textContent = "Delete";
-		for (let pro of proj) {
-			pro.appendChild(deleteBtn);
-			deleteBtn.addEventListener("click", (e) => {
-				console.log(pro.textContent);
-			});
-		}
-	}
-
 	// Loop over array and display contents
 	function displayArrayContents() {
 		addProjectBtn.addEventListener("click", () => {
 			const proj = document.createElement("li");
+			const projText = document.createElement("h4");
 			for (let i = 0; i < projects.length; i++) {
 				proj.classList.add("project");
-				const last = projects.slice(-1);
-				proj.textContent = last.title;
+
+				projText.textContent = projects[i].title;
 			}
 			projectsList.appendChild(proj);
+			proj.appendChild(projText);
+			proj.setAttribute("data-number", `${projects.length}`);
+
+			// Add a button to remove array items
+			function deleteArrayContents() {
+				const proj = document.querySelectorAll(".project");
+				const deleteBtn = document.createElement("button");
+				deleteBtn.classList.toggle("delete-btn");
+				deleteBtn.textContent = "Delete";
+				for (let pro of proj) {
+					pro.appendChild(deleteBtn);
+				}
+
+				deleteBtn.addEventListener("click", (e) => {
+					/* let projectID = deleteBtn.parentNode.getAttribute("data-number"); */
+
+					const findProject = projects.findIndex(
+						(object) => object.title === projText.textContent
+					);
+
+					projects.splice(findProject, 1);
+					deleteBtn.parentNode.remove();
+					console.log(projects);
+				});
+			}
+
 			deleteArrayContents();
 		});
 	}
@@ -94,5 +95,3 @@ export function projectMaker() {
 	writeNewProjectName();
 	displayArrayContents();
 }
-
-console.log(projects);

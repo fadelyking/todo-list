@@ -100,9 +100,10 @@ export function taskMaker() {
 			tasks.push(exampleTask5);
 			tasks.push(newTask);
 
-			projects[0].addTask(exampleTask1);
+			/* 			projects[0].addTask(exampleTask1);
 			projects[0].addTask(exampleTask2);
-			projects[0].addTask(exampleTask3);
+			projects[0].addTask(exampleTask3); */
+			projects[0].addTask(newTask);
 
 			console.log(projects);
 		});
