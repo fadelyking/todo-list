@@ -1,4 +1,5 @@
 export const projects = [];
+export let activeID = "";
 
 export class Project {
 	constructor(title, id) {
@@ -84,6 +85,13 @@ export function projectMaker() {
 
 					projects.splice(findProject, 1);
 					deleteBtn.parentNode.remove();
+					console.log(projects);
+				});
+
+				projText.parentNode.addEventListener("click", (e) => {
+					activeID = e.target.parentNode.getAttribute("data-number");
+					console.log(activeID);
+
 					console.log(projects);
 				});
 			}

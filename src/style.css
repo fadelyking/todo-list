@@ -100,6 +100,7 @@ body {
 
 .project {
 	display: flex;
+	justify-content: space-between;
 	gap: 20px;
 	font-family: "Roboto";
 	align-items: center;
@@ -107,7 +108,12 @@ body {
     font-size: 0.900rem;
 }
 .add-task {
-	grid-column: 4/5;
+	grid-column: 1/5;
+	align-items: center;
 	font-family: "Roboto";
     font-size: 1.2rem;
+}
+
+.task-list > li {
+	grid-column: 4/8;
 }
