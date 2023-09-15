@@ -1,6 +1,6 @@
 import "./style.css";
-import { Project, projects, projectMaker } from "./addproject";
-import { taskMaker, tasks } from "./addtask";
+import { projectMaker } from "./addproject";
+import { taskMaker } from "./addtask";
 
 projectMaker();
 taskMaker();

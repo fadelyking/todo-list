@@ -1,3 +1,6 @@
+import { taskList, tasks } from "./addtask";
+import { clearDOM } from "./cleardom";
+
 export const projects = [];
 export let activeID = "";
 
@@ -88,11 +91,33 @@ export function projectMaker() {
 					console.log(projects);
 				});
 
+				let staticValue = activeID;
+
 				projText.parentNode.addEventListener("click", (e) => {
 					activeID = e.target.parentNode.getAttribute("data-number");
-					console.log(activeID);
+					if (staticValue != activeID && 1 <= tasks.length) {
+						console.log(activeID);
+						console.log(staticValue);
+						const listItem = document.querySelectorAll(".list-item");
+						for (let item of listItem) {
+							item.remove();
+						}
 
-					console.log(projects);
+						const findProjectTask = projects.find(
+							(object) => object.title === projText.textContent
+						);
+
+						if (findProjectTask === undefined) {
+							return;
+						} else {
+							for (let i = 0; i < parseInt(findProjectTask.tasks.length); i++) {
+								const listItem = document.createElement("li");
+								listItem.classList.add("list-item");
+								listItem.textContent = `${findProjectTask.tasks[i].title}, ${findProjectTask.tasks[i].description}, ${findProjectTask.tasks[i].date}, ${findProjectTask.tasks[i].priority}`;
+								taskList.appendChild(listItem);
+							}
+						}
+					}
 				});
 			}
 

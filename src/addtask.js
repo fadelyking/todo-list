@@ -11,7 +11,7 @@ export class Task {
 
 const addTask = document.querySelector(".add-task");
 const taskListHeader = document.querySelector("h3");
-const taskList = document.querySelector(".task-list");
+export const taskList = document.querySelector(".task-list");
 const form = document.createElement("form");
 form.setAttribute("method", "post");
 form.setAttribute("id", "hide");
@@ -68,12 +68,14 @@ export function taskMaker() {
 				`${taskPriority.value}`
 			);
 
-			projects[activeID - 1].addTask(newTask);
-			console.log(projects);
-
-			const listItem = document.createElement("li");
-			listItem.textContent = `${newTask.title}, ${newTask.description}, ${newTask.date}, ${newTask.priority}`;
-			taskList.appendChild(listItem);
+			tasks.push(newTask);
+			if (projects.length >= 1 && activeID >= 1) {
+				projects[activeID - 1].addTask(newTask);
+				const listItem = document.createElement("li");
+				listItem.classList.add("list-item");
+				listItem.textContent = `${newTask.title}, ${newTask.description}, ${newTask.date}, ${newTask.priority}`;
+				taskList.appendChild(listItem);
+			}
 		});
 	}
 
