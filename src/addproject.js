@@ -1,5 +1,4 @@
 import { taskList, tasks } from "./addtask";
-import { clearDOM } from "./cleardom";
 
 export const projects = [];
 export let activeID = "";
@@ -94,6 +93,12 @@ export function projectMaker() {
 				let staticValue = activeID;
 
 				projText.parentNode.addEventListener("click", (e) => {
+					const h4 = document.querySelectorAll("h4");
+					for (let element of h4) {
+						element.classList.remove("active");
+						e.target.classList.add("active");
+					}
+
 					activeID = e.target.parentNode.getAttribute("data-number");
 					if (staticValue != activeID && 1 <= tasks.length) {
 						console.log(activeID);

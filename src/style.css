@@ -117,3 +117,18 @@ body {
 .task-list > li {
 	grid-column: 4/8;
 }
+
+h4 {
+	padding: 7px;
+	border-radius: 10px;
+    cursor: pointer;
+}
+
+h4:hover {
+	cursor: pointer;
+	background-color: #ccc;
+}
+
+.active {
+	background-color: #ccc;
+}
