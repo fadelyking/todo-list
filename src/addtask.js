@@ -52,6 +52,9 @@ form.appendChild(submitBtn);
 
 export const tasks = [];
 
+/* const sampleTask = new Task("Play some Golf", "Buy some balls", "25-9-2023", "43");
+projects[0].addTask(sampleTask);
+ */
 export function taskMaker() {
 	function writeNewTaskName() {
 		taskListHeader.addEventListener("click", (e) => {
@@ -61,6 +64,7 @@ export function taskMaker() {
 		submitBtn.addEventListener("click", (e) => {
 			e.preventDefault();
 			form.setAttribute("id", "hide");
+
 			const newTask = new Task(
 				`${taskTitle.value}`,
 				`${taskDescription.value}`,
@@ -75,6 +79,9 @@ export function taskMaker() {
 				listItem.classList.add("list-item");
 				listItem.textContent = `${newTask.title}, ${newTask.description}, ${newTask.date}, ${newTask.priority}`;
 				taskList.appendChild(listItem);
+				form.reset();
+			} else {
+				alert("Add and select project first!");
 			}
 		});
 	}
