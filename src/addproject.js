@@ -151,8 +151,7 @@ export function projectMaker() {
 					const findProject = projects.findIndex(
 						(object) => object.title === projText.textContent
 					);
-					/* 					console.log(findProject + 1);
-					console.log(e.target.parentNode.getAttribute("data-number")); */
+
 					activeID = findProject + 1;
 					console.log(projects);
 

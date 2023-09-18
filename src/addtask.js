@@ -72,10 +72,15 @@ export function taskMaker() {
 			tasks.push(newTask);
 			if (projects.length >= 1 && activeID >= 1) {
 				projects[activeID - 1].addTask(newTask);
+				const ulList = document.createElement("ul");
+				taskList.appendChild(ulList);
 				const listItem = document.createElement("li");
 				listItem.classList.add("list-item");
-				listItem.textContent = `${newTask.title}, ${newTask.description}, ${newTask.date}, ${newTask.priority}`;
-				taskList.appendChild(listItem);
+				listItem.setAttribute("task-title", `${newTask.title}`);
+				const h3Tasks = document.createElement("h3");
+				listItem.appendChild(h3Tasks);
+				h3Tasks.textContent = `${newTask.title}, ${newTask.description}, ${newTask.date}, ${newTask.priority}`;
+				ulList.appendChild(listItem);
 				form.reset();
 			} else {
 				alert("Add and select project first!");
@@ -84,23 +89,35 @@ export function taskMaker() {
 	}
 
 	function deleteEditTask() {
-		const taskItems = document.querySelectorAll(".list-item");
-		console.log(taskItems);
+		const listItem = document.querySelector(".task-list");
 		const deleteBtn = document.createElement("button");
 		deleteBtn.classList.toggle("delete-btn-tasks");
 		deleteBtn.textContent = "Delete";
 		const editBtn = document.createElement("button");
 		editBtn.classList.toggle("edit-btn-tasks");
 		editBtn.textContent = "Edit";
-		for (let task of taskItems) {
-			console.log(task);
-			tasks.appendChild(editBtn);
-			tasks.appendChild(deleteBtn);
+
+		for (let task of listItem.children) {
+			task.appendChild(editBtn);
+			task.appendChild(deleteBtn);
 		}
+
+		deleteBtn.addEventListener("click", (e) => {
+			// Find the project index number in the array
+			for (let i = 0; i < tasks.length; i++) {
+				const findTask = tasks.findIndex(
+					(object) =>
+						object.title === e.target.parentNode.firstChild.getAttribute("task-title")
+				);
+				tasks.splice(findTask, 1);
+				e.target.parentNode.remove();
+			}
+		});
 	}
+
+	writeNewTaskName();
+
 	submitBtn.addEventListener("click", (e) => {
 		deleteEditTask();
 	});
-
-	writeNewTaskName();
 }
