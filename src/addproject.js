@@ -84,14 +84,11 @@ export function projectMaker() {
 
 				// Add the button to each project title
 				for (let pro of proj) {
-					pro.appendChild(deleteBtn);
 					pro.appendChild(editBtn);
+					pro.appendChild(deleteBtn);
 				}
 
 				editBtn.addEventListener("click", (e) => {
-					const findProject = projects.findIndex(
-						(object) => object.title === projText.textContent
-					);
 					const editProjectInput = document.createElement("input");
 					editProjectInput.classList.toggle("edit-project");
 					editProjectInput.setAttribute(
@@ -99,6 +96,7 @@ export function projectMaker() {
 						`${e.target.parentNode.firstChild.textContent}`
 					);
 					const editProjectBtn = document.createElement("button");
+					editProjectBtn.classList.toggle("confirm-edit");
 					editProjectBtn.textContent = "Edit";
 					e.target.parentNode.firstChild.classList.toggle("hide");
 					e.target.parentNode.firstChild.nextSibling.classList.toggle("hide");
@@ -111,7 +109,6 @@ export function projectMaker() {
 							(object) => object.title === projText.textContent
 						);
 
-						activeID = projText.parentNode.getAttribute("data-number");
 						findProjectTask.title = `${editProjectInput.value}`;
 						projText.textContent = `${editProjectInput.value}`;
 						e.target.parentNode.firstChild.classList.toggle("hide");
@@ -119,6 +116,7 @@ export function projectMaker() {
 						e.target.parentNode.firstChild.nextSibling.nextSibling.classList.toggle(
 							"hide"
 						);
+						activeID = projText.parentNode.getAttribute("data-number");
 
 						editProjectInput.remove();
 						editProjectBtn.remove();
@@ -150,8 +148,16 @@ export function projectMaker() {
 						e.target.classList.add("active");
 					}
 
+					const findProject = projects.findIndex(
+						(object) => object.title === projText.textContent
+					);
+					/* 					console.log(findProject + 1);
+					console.log(e.target.parentNode.getAttribute("data-number")); */
+					activeID = findProject + 1;
+					console.log(projects);
+
 					// Clear the DOM and then populate it again with the tasks of each project ID number
-					if (staticValue != activeID && 1 <= tasks.length) {
+					if (staticValue !== activeID && 1 <= tasks.length) {
 						const listItem = document.querySelectorAll(".list-item");
 						for (let item of listItem) {
 							item.remove();

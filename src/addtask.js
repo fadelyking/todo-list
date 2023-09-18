@@ -52,9 +52,6 @@ form.appendChild(submitBtn);
 
 export const tasks = [];
 
-/* const sampleTask = new Task("Play some Golf", "Buy some balls", "25-9-2023", "43");
-projects[0].addTask(sampleTask);
- */
 export function taskMaker() {
 	function writeNewTaskName() {
 		taskListHeader.addEventListener("click", (e) => {
@@ -85,6 +82,25 @@ export function taskMaker() {
 			}
 		});
 	}
+
+	function deleteEditTask() {
+		const taskItems = document.querySelectorAll(".list-item");
+		console.log(taskItems);
+		const deleteBtn = document.createElement("button");
+		deleteBtn.classList.toggle("delete-btn-tasks");
+		deleteBtn.textContent = "Delete";
+		const editBtn = document.createElement("button");
+		editBtn.classList.toggle("edit-btn-tasks");
+		editBtn.textContent = "Edit";
+		for (let task of taskItems) {
+			console.log(task);
+			tasks.appendChild(editBtn);
+			tasks.appendChild(deleteBtn);
+		}
+	}
+	submitBtn.addEventListener("click", (e) => {
+		deleteEditTask();
+	});
 
 	writeNewTaskName();
 }
